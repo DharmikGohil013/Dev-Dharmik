@@ -5,8 +5,8 @@ import {
 
 
 export const themeData = {
-    theme: orangeThemeDark
+    theme:blueThemeLight
 }
-
+c
 
 // Choose theme from above
