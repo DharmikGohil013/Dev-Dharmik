@@ -8,13 +8,7 @@ import { ThemeContext } from '../../contexts/ThemeContext';
 import { headerData } from '../../data/headerData';
 import { socialsData } from '../../data/socialsData';
 
-import {
-    FaTwitter,
-    FaLinkedin,
-    FaGithub,
-    FaYoutube,
-    FaBlogger,
-} from 'react-icons/fa';
+import { FaTwitter, FaLinkedin, FaGithub, FaYoutube, FaBlogger } from 'react-icons/fa';
 
 function Landing() {
     const { theme, drawerOpen } = useContext(ThemeContext);
@@ -31,14 +25,16 @@ function Landing() {
             height: '50px',
             fontFamily: 'var(--primaryFont)',
             border: `3px solid ${theme.primary}`,
-            transition: '100ms ease-out',
+            transition: 'background-color 0.3s ease, color 0.3s ease, border 0.3s ease',
             '&:hover': {
                 backgroundColor: theme.tertiary,
                 color: theme.secondary,
                 border: `3px solid ${theme.tertiary}`,
             },
             [t.breakpoints.down('sm')]: {
-                width: '180px',
+                width: '120px',
+                height: '40px',
+                fontSize: '0.9rem',
             },
         },
         contactBtn: {
@@ -53,7 +49,7 @@ function Landing() {
             fontWeight: '500',
             fontFamily: 'var(--primaryFont)',
             border: `3px solid ${theme.primary}`,
-            transition: '100ms ease-out',
+            transition: 'background-color 0.3s ease, color 0.3s ease, border 0.3s ease',
             '&:hover': {
                 backgroundColor: theme.secondary,
                 color: theme.tertiary,
@@ -68,75 +64,55 @@ function Landing() {
     const classes = useStyles();
 
     return (
-        <div className='landing'>
-            <div className='landing--container'>
+        <div className="landing">
+            <div className="landing--container">
                 <div
-                    className='landing--container-left'
+                    className="landing--container-left"
                     style={{ backgroundColor: theme.primary }}
                 >
-                    <div className='lcl--content'>
+                    <div className="lcl--content">
                         {socialsData.linkedIn && (
-                            <a
-                                href={socialsData.linkedIn}
-                                target='_blank'
-                                rel='noreferrer'
-                            >
+                            <a href={socialsData.linkedIn} target="_blank" rel="noreferrer">
                                 <FaLinkedin
-                                    className='landing--social'
+                                    className="landing--social"
                                     style={{ color: theme.secondary }}
-                                    aria-label='LinkedIn'
+                                    aria-label="LinkedIn"
                                 />
                             </a>
                         )}
                         {socialsData.github && (
-                            <a
-                                href={socialsData.github}
-                                target='_blank'
-                                rel='noreferrer'
-                            >
+                            <a href={socialsData.github} target="_blank" rel="noreferrer">
                                 <FaGithub
-                                    className='landing--social'
+                                    className="landing--social"
                                     style={{ color: theme.secondary }}
-                                    aria-label='GitHub'
+                                    aria-label="GitHub"
                                 />
                             </a>
                         )}
                         {socialsData.twitter && (
-                            <a
-                                href={socialsData.twitter}
-                                target='_blank'
-                                rel='noreferrer'
-                            >
+                            <a href={socialsData.twitter} target="_blank" rel="noreferrer">
                                 <FaTwitter
-                                    className='landing--social'
+                                    className="landing--social"
                                     style={{ color: theme.secondary }}
-                                    aria-label='Twitter'
+                                    aria-label="Twitter"
                                 />
                             </a>
                         )}
                         {socialsData.youtube && (
-                            <a
-                                href={socialsData.youtube}
-                                target='_blank'
-                                rel='noreferrer'
-                            >
+                            <a href={socialsData.youtube} target="_blank" rel="noreferrer">
                                 <FaYoutube
-                                    className='landing--social'
+                                    className="landing--social"
                                     style={{ color: theme.secondary }}
-                                    aria-label='YouTube'
+                                    aria-label="YouTube"
                                 />
                             </a>
                         )}
                         {socialsData.blogger && (
-                            <a
-                                href={socialsData.blogger}
-                                target='_blank'
-                                rel='noreferrer'
-                            >
+                            <a href={socialsData.blogger} target="_blank" rel="noreferrer">
                                 <FaBlogger
-                                    className='landing--social'
+                                    className="landing--social"
                                     style={{ color: theme.secondary }}
-                                    aria-label='Blogger'
+                                    aria-label="Blogger"
                                 />
                             </a>
                         )}
@@ -144,47 +120,34 @@ function Landing() {
                 </div>
                 <img
                     src={headerData.image}
-                    alt=''
-                    className='landing--img'
+                    alt={headerData.name || 'Profile'}
+                    className="landing--img"
                     style={{
-                        opacity: `${drawerOpen ? '0' : '1'}`,
-                        borderColor: theme.secondary,
+                        opacity: drawerOpen ? '0' : '1',
+                        border: `4px solid ${theme.secondary}`,
                     }}
                 />
                 <div
-                    className='landing--container-right'
+                    className="landing--container-right"
                     style={{ backgroundColor: theme.secondary }}
                 >
-                    <div
-                        className='lcr--content'
-                        style={{ color: theme.tertiary }}
-                    >
+                    <div className="lcr--content" style={{ color: theme.tertiary }}>
                         <h6>{headerData.title}</h6>
                         <h1>{headerData.name}</h1>
-                        <p>{headerData.desciption}</p>
-
-                        <div className='lcr-buttonContainer'>
+                        <p>{headerData.description}</p>
+                        <div className="lcr-buttonContainer">
                             {headerData.resumePdf && (
                                 <a
                                     href={headerData.resumePdf}
-                                    download='resume'
-                                    target='_blank'
-                                    rel='noreferrer'
+                                    download="resume"
+                                    target="_blank"
+                                    rel="noreferrer"
                                 >
-                                    <Button className={classes.resumeBtn}>
-                                        Download CV
-                                    </Button>
+                                    <Button className={classes.resumeBtn}>Download CV</Button>
                                 </a>
                             )}
-                            <NavLink
-                                to='/#contacts'
-                                smooth={true}
-                                spy='true'
-                                duration={2000}
-                            >
-                                <Button className={classes.contactBtn}>
-                                    Contact
-                                </Button>
+                            <NavLink to="/#contacts" smooth={true} spy="true" duration={2000}>
+                                <Button className={classes.contactBtn}>Contact</Button>
                             </NavLink>
                         </div>
                     </div>
