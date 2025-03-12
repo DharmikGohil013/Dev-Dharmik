@@ -1,5 +1,6 @@
 {
-  "name": "developer-portfolio",
+  "homepage": "https://DharmikGohil013.github.io/Dev-Dharmik",
+  "name": "Dev-Dharmik",
   "version": "0.1.0",
   "private": true,
   "dependencies": {
@@ -24,8 +25,12 @@
     "web-vitals": "^1.0.1"
   },
   "scripts": {
-    "start": "react-scripts start",
-    "build": "react-scripts build",
+    "predeploy":
+      "npm run build",
+    "deploy":
+      "gh-pages -d build",
+    "start": "set NODE_OPTIONS=--openssl-legacy-provider && react-scripts start",
+    "build": "set NODE_OPTIONS=--openssl-legacy-provider && react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject"
   },
@@ -46,5 +51,8 @@
       "last 1 firefox version",
       "last 1 safari version"
     ]
+  },
+  "devDependencies": {
+    "gh-pages": "^6.3.0"
   }
 }
